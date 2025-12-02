@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agung Rizki Maulana - Personal CV & Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <style>
+        /* Import Google Fonts - Contoh: Poppins */
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
+        :root {
+            --primary-color: #007bff; /* Biru terang */
+            --secondary-color: #f8f9fa; /* Latar belakang terang */
+            --accent-color: #e9ecef; /* Warna aksen/garis */
+            --text-dark: #343a40;
+            --text-light: #6c757d;
+            --sidebar-width: 300px;
+            --transition-duration: 0.3s;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background-color: #ffffff; /* Latar belakang utama putih */
+        }
+
+        /* -------------------------------------------------------------------------- */
+        /* HEADER (NAVIGASI ATAS) */
+        /* -------------------------------------------------------------------------- */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 40px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background-color: #ffffff;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            z-index: 1000;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .initials {
+            background-color: var(--primary-color);
+            color: white;
+            font-size: 1.2rem;
+            font-weight: 700;
+            padding: 5px 10px;
+            border-radius: 4px;
+            margin-right: 10px;
+        }
+
+        .name-profesi {
+            line-height: 1.2;
+        }
+
+        .full-name {
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        .profession {
+            font-size: 0.8rem;
+            color: var(--text-light);
+        }
+
+        .navbar a {
+            text-decoration: none;
+            color: var(--text-dark);
+            padding: 10px 15px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: color var(--transition-duration), border-bottom var(--transition-duration);
+            text-transform: uppercase;
+        }
+
+        .navbar a:hover,
+        .navbar a.active {
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--primary-color);
+        }
+
+        /* -------------------------------------------------------------------------- */
+        /* MAIN LAYOUT (Container, Sidebar, Content) */
+        /* -------------------------------------------------------------------------- */
+        .container {
+            display: flex;
+            padding-top: 80px; /* Jarak dari fixed header */
+            min-height: 100vh;
+        }
+
+        .sidebar {
+            width: var(--sidebar-width);
+            background-color: var(--secondary-color); /* Warna krem muda/aksen seperti referensi */
+            padding: 40px 20px;
+            position: fixed;
+            height: 100%;
+            overflow-y: auto;
+            border-right: 1px solid var(--accent-color);
+        }
+
+        .profile-card {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .profile-photo {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 15px;
+            border: 5px solid white;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .card-name {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .card-profession {
+            font-size: 1rem;
+            color: var(--text-light);
+            margin-bottom: 20px;
+        }
+
+        .social-links-sidebar a {
+            color: var(--text-dark);
+            font-size: 1.2rem;
+            margin: 0 10px;
+            transition: color var(--transition-duration);
+        }
+
+        .social-links-sidebar a:hover {
+            color: var(--primary-color);
+        }
+
+        .contact-info-sidebar h2 {
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            border-bottom: 1px solid var(--accent-color);
+            padding-bottom: 5px;
+            color: var(--primary-color);
+        }
+
+        .info-item {
+            font-size: 0.9rem;
+            color: var(--text-dark);
+            margin-bottom: 10px;
+        }
+
+        .info-item i {
+            margin-right: 10px;
+            color: var(--primary-color);
+        }
+
+        .content {
+            margin-left: var(--sidebar-width);
+            padding: 40px;
+            flex-grow: 1;
+        }
+
+        /* -------------------------------------------------------------------------- */
+        /* SECTION CONTENT (Transisi & Judul) */
+        /* -------------------------------------------------------------------------- */
+        .content-section {
+            padding: 20px 0;
+            opacity: 0;
+            transition: opacity var(--transition-duration) ease-in-out;
+            display: none;
+        }
+
+        .content-section.active {
+            display: block;
+            opacity: 1;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 30px;
+            color: var(--primary-color);
+            border-bottom: 3px solid var(--accent-color);
+            display: inline-block;
+            padding-bottom: 10px;
+        }
+
+        /* -------------------------------------------------------------------------- */
+        /* ABOUT ME SECTION */
+        /* -------------------------------------------------------------------------- */
+        .summary-text {
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+            line-height: 1.8;
+        }
+
+        .cta-buttons a {
+            text-decoration: none;
+            padding: 10px 20px;
+            margin-right: 15px;
+            font-weight: 600;
+            border-radius: 5px;
+            transition: background-color var(--transition-duration);
+        }
+
+        .primary-btn {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .primary-btn:hover {
+            background-color: #0056b3;
+        }
+
+        .secondary-btn {
+            background-color: var(--text-light);
+            color: white;
+        }
+
+        .secondary-btn:hover {
+            background-color: #5a6268;
+        }
+
+        /* -------------------------------------------------------------------------- */
+        /* RESUME & PROJECT SECTION (Cards) */
+        /* -------------------------------------------------------------------------- */
+
+        h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-top: 30px;
+            margin-bottom: 20px;
+            color: var(--text-dark);
+        }
+
+        .icon-title {
+            margin-right: 10px;
+            color: var(--primary-color);
+        }
+
+        .timeline {
+            border-left: 2px solid var(--accent-color);
+            padding-left: 20px;
+            margin-bottom: 40px;
+        }
+
+        .card {
+            background-color: var(--secondary-color);
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            display: flex;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+            position: relative;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            left: -28px;
+            top: 25px;
+            width: 14px;
+            height: 14px;
+            background-color: var(--primary-color);
+            border-radius: 50%;
+            border: 3px solid white;
+        }
+
+        .card-left {
+            width: 35%;
+            padding-right: 20px;
+            border-right: 1px solid var(--accent-color);
+        }
+
+        .card-right {
+            width: 65%;
+            padding-left: 20px;
+        }
+
+        .card-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: 5px;
+        }
+
+        .card-subtitle, .card-location {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            margin-bottom: 5px;
+        }
+        
+        /* Gaya untuk Gambar Proyek */
+        .project-image {
+            width: 100%; /* Lebar penuh di dalam card-left */
+            max-width: 150px; /* Batas maksimum agar tidak terlalu besar */
+            height: auto;
+            margin-top: 10px;
+            border-radius: 4px;
+            object-fit: cover;
+            border: 1px solid var(--accent-color);
+        }
+
+        .card-description {
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* Skill List */
+        .skills-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .skill-item {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 400;
+        }
+
+        /* -------------------------------------------------------------------------- */
+        /* CONTACT SECTION */
+        /* -------------------------------------------------------------------------- */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+
+        .contact-detail {
+            display: flex;
+            align-items: center;
+            background-color: var(--secondary-color);
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+        }
+
+        .contact-icon {
+            font-size: 2rem;
+            color: var(--primary-color);
+            margin-right: 15px;
+        }
+
+        .contact-text h4 {
+            margin: 0;
+            font-size: 1rem;
+            color: var(--text-light);
+        }
+
+        .contact-text p {
+            margin: 0;
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        .social-contact-area h3 {
+            border-bottom: 1px solid var(--accent-color);
+            padding-bottom: 10px;
+        }
+
+        .social-links-contact a {
+            color: var(--text-dark);
+            font-size: 2rem;
+            margin-right: 20px;
+            transition: color var(--transition-duration), transform var(--transition-duration);
+        }
+
+        .social-links-contact a:hover {
+            color: var(--primary-color);
+            transform: translateY(-3px);
+        }
+
+
+        /* -------------------------------------------------------------------------- */
+        /* RESPONSIVE DESIGN */
+        /* -------------------------------------------------------------------------- */
+        @media (max-width: 992px) {
+            .sidebar {
+                width: 100%;
+                position: relative;
+                height: auto;
+                border-right: none;
+                border-bottom: 1px solid var(--accent-color);
+            }
+
+            .container {
+                flex-direction: column;
+                padding-top: 60px;
+            }
+
+            .content {
+                margin-left: 0;
+                padding: 20px;
+            }
+
+            .header {
+                position: static;
+                flex-direction: column;
+                padding: 15px 20px;
+            }
+            
+            .navbar {
+                margin-top: 10px;
+            }
+
+            .card {
+                flex-direction: column;
+            }
+            
+            .card-left, .card-right {
+                width: 100%;
+                padding: 0;
+                border-right: none;
+                padding-bottom: 10px;
+            }
+            
+            .card-right {
+                padding-top: 10px;
+                border-top: 1px solid var(--accent-color);
+            }
+            
+            .card::before {
+                display: none; /* Sembunyikan timeline pada mobile */
+            }
+
+            .timeline {
+                border-left: none;
+                padding-left: 0;
+            }
+            
+            /* Pada mobile, gambar proyek mengambil lebar penuh card-left (yang 100%) */
+            .project-image {
+                max-width: 100%; 
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="header">
+        <div class="logo">
+            <span class="initials">AR</span>
+            <div class="name-profesi">
+                <div class="full-name">Agung Rizki Maulana</div>
+                <div class="profession">Accountant | Specialist in Public Sector Accounting</div>
+            </div>
+        </div>
+        <nav class="navbar">
+            <a href="#about" class="nav-link active" data-section="about">ABOUT ME</a>
+            <a href="#resume" class="nav-link" data-section="resume">RESUME</a>
+            <a href="#projects" class="nav-link" data-section="projects">PROJECTS</a>
+            <a href="#contact" class="nav-link" data-section="contact">CONTACT</a>
+        </nav>
+    </header>
+
+    <main class="container">
+        <aside class="sidebar">
+            <div class="profile-card">
+                <img src="https://raw.githubusercontent.com/agungrizki1417/myprofile/main/Profile%20Photo.jpg" alt="Agung Rizki Maulana Profile Photo" class="profile-photo">
+                
+                <h1 class="card-name">Agung Rizki Maulana</h1>
+                <p class="card-profession">Accountant | Specialist in Public Sector Accounting</p>
+                
+                <div class="social-links-sidebar">
+                    <a href="https://web.facebook.com/agung.masterslamdunk" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://www.linkedin.com/in/agung-rizki-maulana-a84303159/" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="https://www.instagram.com/m.aul.ana/" target="_blank"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.threads.com/@armaul.ana" target="_blank"><i class="fab fa-threads"></i></a>
+                </div>
+            </div>
+            
+            <div class="contact-info-sidebar">
+                <h2>Contact</h2>
+                <div class="info-item"><i class="fas fa-phone"></i> 087889533655</div>
+                <div class="info-item"><i class="fas fa-envelope"></i> agungrizki.1417@gmail.com</div>
+                <div class="info-item"><i class="fas fa-map-marker-alt"></i> Kebumen, Jawa Tengah</div>
+            </div>
+        </aside>
+
+        <div class="content">
+
+            <section id="about" class="content-section active">
+                <h2 class="section-title">ABOUT ME</h2>
+                <div class="about-content">
+                    <p class="summary-text">
+                        Government financial reporting specialist with a strong background in public-sector accounting, currently developing skills in programming, web system development, and foundational cybersecurity practices. Known for adaptability, continuous learning, and a strong analytical mindset. Feel free to discover more about me.
+                    </p>
+                </div>
+                
+                <div class="cta-buttons">
+                    <a href="#resume" class="btn primary-btn" data-section="resume">RESUME</a>
+                    <a href="#projects" class="btn secondary-btn" data-section="projects">PROJECTS</a>
+                </div>
+            </section>
+
+            <section id="resume" class="content-section">
+                <h2 class="section-title">RESUME</h2>
+
+                <h3><i class="fas fa-briefcase icon-title"></i> Experience</h3>
+                <div class="timeline">
+                    <div class="card experience-card">
+                        <div class="card-left">
+                            <p class="card-title">Accounting Officer</p>
+                            <p class="card-subtitle">2018 – sekarang</p>
+                            <p class="card-location">Puskesmas Petanahan, Kebumen, Jawa Tengah</p>
+                        </div>
+                        <div class="card-right">
+                            <p class="card-description">I am responsible for preparing financial reports for the Regional Government Work Unit (OPD), ensuring full compliance with government accounting standards and internal policies. In addition, I serve as the head of planning and budgeting, coordinating the development of work plans and aligning budget allocations with organizational priorities. I also conduct internal audits to assess financial accuracy, compliance, and operational efficiency, providing recommendations for improvement. Furthermore, I manage regional assets (Barang Milik Daerah), overseeing their recording, monitoring, and proper reporting in accordance with applicable regulations.</p>
+                        </div>
+                    </div>
+                    <div class="card experience-card">
+                        <div class="card-left">
+                            <p class="card-title">Quality Assurance (QA) Tester</p>
+                            <p class="card-subtitle">2024 – 2025</p>
+                            <p class="card-location">Project Implementation Team (Diskominfo and BPKPD Kabupaten Kebumen)</p>
+                        </div>
+                        <div class="card-right">
+                            <p class="card-description">As a Quality Assurance (QA) Tester, I was responsible for testing the workflows, functions, processes, and outputs of the web application for regional asset management. My role involved ensuring that all functionalities operated correctly and complied with applicable government accounting standards, identifying issues, and providing feedback to the development team for improvements.</p>
+                        </div>
+                    </div>
+                    <div class="card experience-card">
+                        <div class="card-left">
+                            <p class="card-title">Forensic Accounting Investigator</p>
+                            <p class="card-subtitle">2022-2023 (Temporary Assignment)</p>
+                            <p class="card-location">Undisclosed Team</p>
+                        </div>
+                        <div class="card-right">
+                            <p class="card-description">As a member of the investigation team, I was responsible for collecting evidence and analyzing financial data to detect inconsistencies, irregularities, and potential fraud. My role involved comparing records, identifying discrepancies, and supporting the team in uncovering financial mismanagement in compliance with applicable regulations and standards.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <h3><i class="fas fa-graduation-cap icon-title"></i> Education</h3>
+                <div class="timeline">
+                    <div class="card experience-card">
+                        <div class="card-left">
+                            <p class="card-title">Sarjana Akuntansi</p>
+                            <p class="card-subtitle">2014 – 2018</p>
+                            <p class="card-location">Universitas Muhammadiyah Yogyakarta, Bantul, Yogyakarta</p>
+                        </div>
+                        <div class="card-right">
+                            <p class="card-description">Completed a comprehensive academic program in accounting, studying financial accounting, management accounting, Islamic accounting, accounting information systems, auditing, taxation, and regional government accounting. Conducted in-depth research and a thesis project with a concentration in Islamic accounting, analyzing financial practices and compliance with Sharia principles. Developed strong analytical, problem-solving, and data interpretation skills applicable to both conventional and Islamic financial contexts.</p>
+                        </div>
+                    </div>
+                    <div class="card experience-card">
+                        <div class="card-left">
+                            <p class="card-title">Associate Degree - Bahasa Arab & Studi Islam</p>
+                            <p class="card-subtitle">2015 – 2017</p>
+                            <p class="card-location">Ma’had Ali bin Abi Thalib UMY Yogyakarta, Bantul, Yogyakarta</p>
+                        </div>
+                        <div class="card-right">
+                            <p class="card-description">Undertook a comprehensive 2-year academic program, studying Arabic language from beginner to intermediate levels and Islamic studies. Coursework included subjects such as Tauhid (Islamic theology), Nahwu (Arabic grammar), Shorof (morphology), Balaghoh (Arabic rhetoric), Fiqh (Islamic jurisprudence), Aqidah (creed), Tafsir (Qur’anic exegesis), Hadith studies, and Islamic ethics. Developed strong linguistic, analytical, and critical thinking skills applicable to both language mastery and understanding of Islamic scholarship.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <h3><i class="fas fa-hammer icon-title"></i> Professional Skills</h3>
+                <div class="skills-list">
+                    <span class="skill-item">Financial Reporting</span>
+                    <span class="skill-item">Budgeting & Planning</span>
+                    <span class="skill-item">Internal Audit</span>
+                    <span class="skill-item">Forensic Accounting (basic)</span>
+                    <span class="skill-item">Asset Management (Barang Milik Daerah)</span>
+                    <span class="skill-item">Islamic Studies</span>
+                    <span class="skill-item">Cross-Functional Collaboration</span>
+                </div>
+            </section>
+
+            <section id="projects" class="content-section">
+                <h2 class="section-title">PROJECTS</h2>
+
+                <div class="timeline">
+                    <div class="card project-card">
+                        <div class="card-left">
+                            <p class="card-title">Consumable Inventory Management System</p>
+                            <img src="https://raw.githubusercontent.com/agungrizki1417/myprofile/main/Sistem%20Penatausahaan%20Persediaan.jpg" alt="Consumable Inventory System Screenshot" class="project-image">
+                        </div>
+                        <div class="card-right">
+                            <p class="card-description">Developed and implemented a system for recording and tracking consumable items, ensuring accurate inventory management, proper documentation, and efficient monitoring of stock usage. The project improved accountability and streamlined the procurement and usage reporting process.</p>
+                        </div>
+                    </div>
+                    <div class="card project-card">
+                        <div class="card-left">
+                            <p class="card-title">Web Application for Employee Activity and Resource Requests</p>
+                             <img src="https://raw.githubusercontent.com/agungrizki1417/myprofile/main/Sistem%20Perencanaan.jpg" alt="Activity Request System Screenshot" class="project-image">
+                        </div>
+                        <div class="card-right">
+                            <p class="card-description">Developed a web application to facilitate employees in submitting requests for activities and necessary resources. The system streamlined submission, approval, and tracking processes, improving efficiency and transparency across the organization.</p>
+                        </div>
+                    </div>
+                    <div class="card project-card">
+                        <div class="card-left">
+                            <p class="card-title">Revenue Management System</p>
+                             <img src="https://raw.githubusercontent.com/agungrizki1417/myprofile/main/Sistem%20Pencatatan%20Pendapatan.jpg" alt="Revenue Management System Screenshot" class="project-image">
+                        </div>
+                        <div class="card-right">
+                            <p class="card-description">Developed a web application for recording organizational revenue, generating financial reports, and managing revenue allocation. The system streamlined data entry, report generation, and allocation processes, improving accuracy, transparency, and efficiency in financial management.</p>
+                        </div>
+                    </div>
+                    <div class="card project-card">
+                        <div class="card-left">
+                            <p class="card-title">Fixed Asset Management and Reporting System</p>
+                             <img src="https://raw.githubusercontent.com/agungrizki1417/myprofile/main/Aset%20Tetap.jpg" alt="Fixed Asset System Screenshot" class="project-image">
+                        </div>
+                        <div class="card-right">
+                            <p class="card-description">Developed a system for managing and reporting fixed assets, including asset registration, tracking, depreciation calculation, maintenance scheduling, and disposal processes. The system ensured accurate record-keeping, compliance with accounting standards, and facilitated comprehensive reporting for effective asset management.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <section id="contact" class="content-section">
+                <h2 class="section-title">CONTACT</h2>
+                <div class="contact-grid">
+                    <div class="contact-detail">
+                        <i class="fas fa-phone-alt contact-icon"></i>
+                        <div class="contact-text">
+                            <h4>Telepon</h4>
+                            <p>087889533655</p>
+                        </div>
+                    </div>
+                    <div class="contact-detail">
+                        <i class="fas fa-envelope contact-icon"></i>
+                        <div class="contact-text">
+                            <h4>Email</h4>
+                            <p>agungrizki.1417@gmail.com</p>
+                        </div>
+                    </div>
+                    <div class="contact-detail">
+                        <i class="fas fa-map-marker-alt contact-icon"></i>
+                        <div class="contact-text">
+                            <h4>Alamat</h4>
+                            <p>Kebumen, Jawa Tengah</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="social-contact-area">
+                    <h3>Connect with Me</h3>
+                    <div class="social-links-contact">
+                        <a href="https://web.facebook.com/agung.masterslamdunk" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://www.linkedin.com/in/agung-rizki-maulana-a84303159/" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="https://www.instagram.com/m.aul.ana/" target="_blank"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.threads.com/@armaul.ana" target="_blank"><i class="fab fa-threads"></i></a>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const navLinks = document.querySelectorAll('.nav-link');
+            const sections = document.querySelectorAll('.content-section');
+
+            // Fungsi untuk menampilkan section yang dipilih
+            function showSection(targetId) {
+                // Hapus kelas 'active' dari semua section
+                sections.forEach(section => {
+                    section.classList.remove('active');
+                    // Atur opacity menjadi 0 sebelum display: none
+                    section.style.opacity = 0;
+                    section.style.display = 'none';
+                });
+
+                // Tampilkan section yang dituju
+                const targetSection = document.getElementById(targetId);
+                if (targetSection) {
+                    targetSection.style.display = 'block';
+                    // Penundaan sangat kecil untuk memicu transisi opacity
+                    setTimeout(() => {
+                        targetSection.classList.add('active');
+                        targetSection.style.opacity = 1;
+                    }, 10); 
+                }
+            }
+
+            // Fungsi untuk mengatur tampilan link navigasi
+            function setActiveLink(targetSectionId) {
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                });
+                const activeLink = document.querySelector(`.nav-link[data-section="${targetSectionId}"]`);
+                if (activeLink) {
+                    activeLink.classList.add('active');
+                }
+            }
+
+            // Menangani klik pada link navigasi (termasuk tombol CTA di About Me)
+            document.querySelectorAll('a[data-section]').forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const targetSectionId = link.getAttribute('data-section');
+                    
+                    // Perbarui URL hash tanpa reload
+                    history.pushState(null, null, `#${targetSectionId}`);
+                    
+                    showSection(targetSectionId);
+                    setActiveLink(targetSectionId);
+                });
+            });
+
+            // Menangani pemuatan halaman awal atau navigasi menggunakan URL hash
+            function handleInitialLoad() {
+                // Ambil ID dari hash URL (misal: #resume)
+                const hash = window.location.hash.substring(1);
+                const initialSectionId = hash || 'about'; // Default ke 'about' jika tidak ada hash
+                
+                showSection(initialSectionId);
+                setActiveLink(initialSectionId);
+            }
+
+            // Panggil fungsi pemuatan awal
+            handleInitialLoad();
+        });
+    </script>
+</body>
+</html>
